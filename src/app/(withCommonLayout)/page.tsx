@@ -1,7 +1,12 @@
 import React from "react";
+import HomePage from "./home/page";
 
-const HomePage = () => {
-  return <React.Fragment></React.Fragment>;
+const MainHomePage = () => {
+  return (
+    <React.Fragment>
+      <HomePage />
+    </React.Fragment>
+  );
 };
 
-export default HomePage;
+export default MainHomePage;

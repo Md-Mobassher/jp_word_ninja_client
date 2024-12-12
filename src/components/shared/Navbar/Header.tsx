@@ -21,6 +21,14 @@ const menus: Item[] = [
     title: "Home",
     link: "/",
   },
+  {
+    title: "Lessons",
+    link: "/lessons",
+  },
+  {
+    title: "Tutorials",
+    link: "/tutorials",
+  },
 
   { title: "Contact", link: "/contact" },
 ];
