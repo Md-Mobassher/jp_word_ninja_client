@@ -9,9 +9,9 @@ import nagad from "@/assets/nagad.png";
 const Footer = () => {
   return (
     <>
-      <div className="bg-primary ">
-        <div className="container px-4 mx-auto pt-10">
-          <div className="flex lg:flex-row md:flex-row flex-col lg:gap-20 md:gap-14 gap-5 justify-start items-start text-white ">
+      <div className="border-t bg-gray-200">
+        <div className="container px-4 mx-auto pt-10 ">
+          <div className="flex lg:flex-row md:flex-row flex-col lg:gap-20 md:gap-14 gap-5 justify-start items-start  ">
             {/* logo */}
             <div className="w-full">
               <Link href="/">
@@ -21,7 +21,7 @@ const Footer = () => {
               </Link>
 
               <div className="flex flex-col gap-2">
-                <div className="flex gap-2 mt-5 justify-start items-center">
+                <div className="flex gap-2 mt-5 justify-center items-center">
                   <div className=" rounded-full flex justify-center items-center p-[6px] w-8 h-8 bg-accent border border-primary hover:border-accent hover:bg-primary text-primary hover:text-accent transition-all duration-300">
                     <FaFacebookF />
                   </div>

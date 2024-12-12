@@ -5,8 +5,6 @@ import Menu, { Item } from "./Menu";
 import headerlogo from "@/assets/logo.png";
 import { useState } from "react";
 import { MenuIcon, X } from "lucide-react";
-import { FaFacebookF, FaLinkedinIn } from "react-icons/fa6";
-import { FaYoutube } from "react-icons/fa";
 
 import Image from "next/image";
 
@@ -29,8 +27,7 @@ const menus: Item[] = [
     title: "Tutorials",
     link: "/tutorials",
   },
-
-  { title: "Contact", link: "/contact" },
+  { title: "Login", link: "/login" },
 ];
 
 const Header: React.FC<HeaderProps> = ({ header, menu }) => {
@@ -38,44 +35,25 @@ const Header: React.FC<HeaderProps> = ({ header, menu }) => {
 
   return (
     <React.Fragment>
-      {/* header top */}
-      <div className=" z-10">
-        <div className="flex justify-between items-center gap-5 container px-4 mx-auto py-1 ">
-          <Link href="/">
-            <div className="lg:w-full md:w-[300px] w-[200px]">
-              <Image src={headerlogo} width={400} height={100} alt="logo" />
-            </div>
-          </Link>
-          <div className="flex flex-col gap-2">
-            <div className="flex gap-2 justify-end items-center">
-              <div className=" rounded-full flex justify-center items-center p-[6px] w-8 h-8 bg-accent border border-primary hover:bg-primary text-primary hover:text-accent transition-all duration-300">
-                <FaFacebookF />
-              </div>
-              <div className=" rounded-full flex justify-center items-center p-[6px] w-8 h-8 bg-accent border border-primary hover:bg-primary text-primary hover:text-accent transition-all duration-300">
-                <FaYoutube />
-              </div>
-              <div className=" rounded-full flex justify-center items-center p-[6px] w-8 h-8 bg-accent border border-primary hover:bg-primary text-primary hover:text-accent transition-all duration-300">
-                <FaLinkedinIn />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* menu */}
       {header === 1 && (
-        <div className="bg-primary text-white sticky top-0 z-10">
+        <div className="shadow-sm border-b text-primary sticky top-0 z-10 bg-gray-100">
           <div className=" container px-4 mx-auto ">
-            <div className="flex items-center  lg:justify-start md:justify-start justify-end lg:py-0 md:py-0 py-1 gap-1 flex-wrap">
+            <div className="flex items-center  justify-between  lg:py-0 md:py-0 py-1 gap-1 flex-wrap">
+              <Link href="/">
+                <div className="lg:w-full md:w-[300px] w-[250px]">
+                  <Image src={headerlogo} width={400} height={100} alt="logo" />
+                </div>
+              </Link>
               {/* Toggle button for mobile menu */}
               <button
-                className="md:hidden text-accent"
+                className="md:hidden"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 {mobileMenuOpen ? (
-                  <X className="text-accent hover:scale-110 transition-all duration-300" />
+                  <X className=" hover:scale-110 transition-all duration-300" />
                 ) : (
-                  <MenuIcon className="text-accent hover:scale-110 transition-all duration-300" />
+                  <MenuIcon className=" hover:scale-110 transition-all duration-300" />
                 )}
               </button>
 
@@ -87,7 +65,7 @@ const Header: React.FC<HeaderProps> = ({ header, menu }) => {
 
             {/* Mobile Menu */}
             {mobileMenuOpen && (
-              <div className="md:hidden mt-5 bg-secondary">
+              <div className="md:hidden mt-5">
                 <Menu items={menus} />
               </div>
             )}

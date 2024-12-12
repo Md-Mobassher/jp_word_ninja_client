@@ -23,7 +23,7 @@ const Menu: React.FC<MenuProps> = ({ items }) => {
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
   return (
-    <div className="z-20 block sticky top-10 w-full  border border-primary">
+    <div className="z-20 block sticky top-10 w-full">
       <div className="flex lg:flex-row md:flex-row flex-wrap flex-col justify-start  lg:items-center">
         {items.map((item, index) => (
           <div
@@ -34,8 +34,8 @@ const Menu: React.FC<MenuProps> = ({ items }) => {
           >
             <Link
               href={item.link}
-              className=" lg:py-[10px] md:py-2 py-2  lg:px-4 md:px-3 px-5 w-full  hover:bg-accent hover:text-primary font-semibold   hover:transition-all hover:duration-300 text-lg 
-              inline-block "
+              className=" lg:py-[10px] md:py-2 py-2  lg:px-4 md:px-3 px-6 w-full   hover:bg-primary hover:text-white font-semibold   hover:transition-all hover:duration-300 text-lg 
+              inline-block rounded-full"
             >
               <div className="flex gap-[1px] lg:justify-center md:justify-center justify-start items-center">
                 {item.title}
