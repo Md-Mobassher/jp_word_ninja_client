@@ -43,6 +43,7 @@ const Register = () => {
         const user = response.data;
         localStorage.setItem("user", JSON.stringify(user));
         setError("");
+
         router.push("/login");
       } else {
         setError("Failed to register user. Please try again");

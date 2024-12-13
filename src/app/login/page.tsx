@@ -1,22 +1,26 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { message, Spin } from "antd";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!email || !password) {
-      setError("Please fill in all fields");
-      return;
+      message.error("Please fill in all fields");
+      return; // Prevent further execution
     }
+
+    setLoading(true);
 
     try {
       const response = await axios.post(
@@ -25,28 +29,37 @@ const Login = () => {
       );
 
       if (response.status === 200) {
+        message.success(response.data.message || "Login successful");
         const user = response.data;
         localStorage.setItem("user", JSON.stringify(user));
-        setError("");
         router.push("/tutorials");
       } else {
-        setError("Invalid email or password");
+        message.error(response.data.message || "Login failed");
+        return; // Stop further execution
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error("Login failed:", err);
-      setError("Something went wrong, please try again");
+      message.error(
+        err.response?.data?.message || "An error occurred during login"
+      );
+    } finally {
+      setLoading(false);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spin size="large" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="w-full max-w-md bg-white shadow-md rounded-lg p-6">
         <h1 className="text-2xl font-bold text-center mb-4">Login</h1>
-        {error && (
-          <div className="bg-red-100 text-red-600 p-2 mb-4 rounded">
-            {error}
-          </div>
-        )}
+
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
