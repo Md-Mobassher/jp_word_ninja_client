@@ -51,7 +51,7 @@ const Register = () => {
 
       localStorage.setItem("user", JSON.stringify(newUser));
       setError("");
-      router.push("/login"); // Redirect to login after registration
+      router.push("/login");
     } catch (err) {
       console.error("Registration failed:", err);
       setError("Something went wrong, please try again");

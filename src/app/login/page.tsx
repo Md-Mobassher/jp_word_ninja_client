@@ -1,10 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { message, Spin } from "antd";
+import setAccessToken from "@/services/actions/setAccessToken";
+import { setToLocalStorage } from "@/utils/local-storage";
+import { verifyToken } from "@/utils/verifyToken";
+import { Spin } from "antd";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -16,7 +20,7 @@ const Login = () => {
     e.preventDefault();
 
     if (!email || !password) {
-      message.error("Please fill in all fields");
+      toast.error("Please fill in all fields");
       return; // Prevent further execution
     }
 
@@ -27,20 +31,31 @@ const Login = () => {
         `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login`,
         { email, password }
       );
-
+      // console.log(response.data.data.accessToken);
       if (response.status === 200) {
-        message.success(response.data.message || "Login successful");
-        const user = response.data;
-        localStorage.setItem("user", JSON.stringify(user));
-        router.push("/tutorials");
+        toast.success(response.data.message || "Login successful");
+
+        if (response?.data?.data?.accessToken) {
+          setToLocalStorage("authKey", response.data.data.accessToken);
+          setAccessToken(response.data.data.accessToken);
+          const user = await verifyToken(response?.data?.data?.accessToken);
+          console.log(user);
+          if (user?.role === "admin") {
+            router.push("/dashboard");
+          } else if (user.role === "super_admin") {
+            router.push("/dashboard");
+          } else if (user.role === "user") {
+            router.push("/tutorials");
+          }
+        }
       } else {
-        message.error(response.data.message || "Login failed");
+        toast.error(response.data.message || "Login failed");
         return; // Stop further execution
       }
     } catch (err: any) {
       console.error("Login failed:", err);
-      message.error(
-        err.response?.data?.message || "An error occurred during login"
+      toast.error(
+        err?.response?.data?.message || "An error occurred during login"
       );
     } finally {
       setLoading(false);

@@ -14,3 +14,26 @@
 html {
   scroll-behavior: smooth;
 }
+
+.ant-table-cell {
+  padding: 5px 12px !important;
+}
+
+.ant-form-item-label {
+  padding-bottom: 4px !important;
+}
+
+.ant-form-item {
+  margin-bottom: 16px !important;
+}
+
+.ant-table-header {
+  background-color: #f7f7f7 !important;
+  border-top: 1px solid lightgray !important;
+  color: #333 !important;
+  background-color: #f7f7f7 !important;
+  font-weight: 600 !important;
+}
+.ant-table-cell {
+  border-bottom: 1px solid lightgray !important;
+}

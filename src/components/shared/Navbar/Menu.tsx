@@ -2,6 +2,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { MdArrowDropDown } from "react-icons/md";
+import useUserInfo from "@/hooks/useUserInfo";
+import { logoutUser } from "@/services/actions/logoutUser";
+import { useRouter } from "next/navigation";
 
 type SubItem = {
   title: string;
@@ -21,10 +24,17 @@ type MenuProps = {
 
 const Menu: React.FC<MenuProps> = ({ items }) => {
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
+  const userInfo = useUserInfo();
+  const router = useRouter();
+
+
+  const handleLogOut = () => {
+    logoutUser(router);
+  };
 
   return (
     <div className="z-20 block sticky top-10 w-full">
-      <div className="flex lg:flex-row md:flex-row flex-wrap flex-col justify-start  lg:items-center">
+      <div className="flex lg:flex-row md:flex-row  flex-col justify-start  lg:items-center">
         {items.map((item, index) => (
           <div
             key={index}
@@ -64,6 +74,23 @@ const Menu: React.FC<MenuProps> = ({ items }) => {
             )}
           </div>
         ))}
+        {userInfo?.userId ? (
+          <h5
+            onClick={() => handleLogOut()}
+            className=" lg:py-[10px] md:py-2 py-2  lg:px-4 md:px-3 px-6 w-full   hover:bg-primary hover:text-white font-semibold   hover:transition-all hover:duration-300 text-lg 
+              inline-block rounded-full"
+          >
+            Logout
+          </h5>
+        ) : (
+          <Link
+            href={"/login"}
+            className=" lg:py-[10px] md:py-2 py-2  lg:px-4 md:px-3 px-6 w-full   hover:bg-primary hover:text-white font-semibold   hover:transition-all hover:duration-300 text-lg 
+              inline-block rounded-full"
+          >
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );

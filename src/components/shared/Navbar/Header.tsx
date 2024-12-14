@@ -5,7 +5,6 @@ import Menu, { Item } from "./Menu";
 import headerlogo from "@/assets/logo.png";
 import { useState } from "react";
 import { MenuIcon, X } from "lucide-react";
-
 import Image from "next/image";
 
 interface HeaderProps {
@@ -27,7 +26,6 @@ const menus: Item[] = [
     title: "Tutorials",
     link: "/tutorials",
   },
-  { title: "Login", link: "/login" },
 ];
 
 const Header: React.FC<HeaderProps> = ({ header, menu }) => {

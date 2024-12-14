@@ -32,7 +32,7 @@ const DashboardLayout = ({
         </Header>
 
         {/* Content */}
-        <Content style={{ padding: "16px", background: "#fff" }}>
+        <Content style={{ padding: "24px", background: "#fff" }}>
           <div style={{ minHeight: "280px" }}>{children}</div>
         </Content>
       </Layout>

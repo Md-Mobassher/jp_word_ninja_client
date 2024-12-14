@@ -1,16 +1,23 @@
-import { Metadata } from "next";
-import DashboardLayout from "./dashboard/components/DashboardLayout";
+"use client";
 
-export const metadata: Metadata = {
-  title: "JP Word Ninja",
-  description: "Developed by Md Mobassher Hossain",
-};
+import DashboardLayout from "./dashboard/components/DashboardLayout";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { isLoggedIn } from "@/services/auth.services";
 
 const DashboardRootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoggedIn()) {
+      router.push("/login");
+    }
+  }, [router]);
+
   return <DashboardLayout>{children}</DashboardLayout>;
 };
 
