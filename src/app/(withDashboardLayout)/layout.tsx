@@ -1,24 +1,37 @@
 "use client";
+import React, { useState } from "react";
+import DashboardHeader from "./components/DashboardHeader";
+import { Layout } from "antd";
+import { Content } from "antd/es/layout/layout";
+import SidebarItems from "./components/Sidebar";
 
-import DashboardLayout from "./dashboard/components/DashboardLayout";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { isLoggedIn } from "@/services/auth.services";
-
-const DashboardRootLayout = ({
+const DashboardLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  const router = useRouter();
+  const [collapsed, setCollapsed] = useState(false);
 
-  useEffect(() => {
-    if (!isLoggedIn()) {
-      router.push("/login");
-    }
-  }, [router]);
-
-  return <DashboardLayout>{children}</DashboardLayout>;
+  return (
+    <Layout
+      style={{
+        minHeight: "100vh",
+      }}
+    >
+      <DashboardHeader collapsed={collapsed} setCollapsed={setCollapsed} />
+      <Layout>
+        <SidebarItems collapsed={collapsed} />
+        <Content
+          style={{
+            padding: 24,
+            backgroundColor: "#f5f5f5",
+          }}
+        >
+          {children}
+        </Content>
+      </Layout>
+    </Layout>
+  );
 };
 
-export default DashboardRootLayout;
+export default DashboardLayout;

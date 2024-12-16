@@ -9,9 +9,9 @@ import nagad from "@/assets/nagad.png";
 const Footer = () => {
   return (
     <>
-      <div className="border-t bg-gray-200">
-        <div className="container px-4 mx-auto pt-10 ">
-          <div className="flex lg:flex-row md:flex-row flex-col lg:gap-20 md:gap-14 gap-5 justify-start items-start  ">
+      <div className="bg-primary ">
+        <div className="container px-4 mx-auto pt-10">
+          <div className="flex lg:flex-row md:flex-row flex-col lg:gap-20 md:gap-14 gap-5 justify-start items-start text-white ">
             {/* logo */}
             <div className="w-full">
               <Link href="/">
@@ -21,7 +21,7 @@ const Footer = () => {
               </Link>
 
               <div className="flex flex-col gap-2">
-                <div className="flex gap-2 mt-5 justify-center items-center">
+                <div className="flex gap-2 mt-5 justify-start items-center">
                   <div className=" rounded-full flex justify-center items-center p-[6px] w-8 h-8 bg-accent border border-primary hover:border-accent hover:bg-primary text-primary hover:text-accent transition-all duration-300">
                     <FaFacebookF />
                   </div>
@@ -52,14 +52,14 @@ const Footer = () => {
               </h2>
               <ul className=" flex flex-col gap-4">
                 <li className="flex justify-start items-start gap-3 hover:gap-5 transition-all duration-300 hover:font-semibold hover:text-accent ">
-                  <Home className="size-6" /> Rajathat, Kurigram – 5600,
+                  <Home className="size-6" /> Aftab Nagor, Dhaka – 1212,
                   Bangladesh
                 </li>
                 <li className="flex justify-start items-start gap-3 hover:gap-5 transition-all duration-300 hover:font-semibold hover:text-accent ">
-                  <Phone className="size-6 " /> +88 01706060647
+                  <Phone className="size-6 " /> 01700000000
                 </li>
                 <li className="flex justify-start items-start gap-3 hover:gap-5 transition-all duration-300 hover:font-semibold hover:text-accent ">
-                  <Mail className="size-6 " /> mdmobassherhossain1@gmail.com
+                  <Mail className="size-6 " /> admin@test.com
                 </li>
               </ul>
             </div>
@@ -69,11 +69,11 @@ const Footer = () => {
         {/* copyright */}
         <div className="bg-secondary">
           <div className="container px-4 mx-auto">
-            <div className=" text-white py-2 mt-5   flex lg:justify-between md:justify-between justify-center flex-wrap">
-              <p className=" ">
-                Copyright © {new Date().getFullYear()} All rights reserved
+            <div className=" text-white py-2 m-0  flex lg:justify-between md:justify-between justify-center flex-wrap items-center">
+              <p className="">
+                Copyright © {new Date().getFullYear()} by Dhaka Bar Association
               </p>
-              <p>
+              <p className="">
                 Design and Develop by{" "}
                 <a
                   href="https://mobassher.vercel.app"

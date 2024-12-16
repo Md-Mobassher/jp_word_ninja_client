@@ -16,7 +16,8 @@ html {
 }
 
 .ant-table-cell {
-  padding: 5px 12px !important;
+  padding: 8px 12px !important;
+  border-bottom: 1px solid lightgray !important;
 }
 
 .ant-form-item-label {
@@ -27,13 +28,21 @@ html {
   margin-bottom: 16px !important;
 }
 
-.ant-table-header {
-  background-color: #f7f7f7 !important;
-  border-top: 1px solid lightgray !important;
-  color: #333 !important;
-  background-color: #f7f7f7 !important;
+/* Table Header */
+.ant-table-thead > tr > th {
+  background-color: #278ebf !important;
+  color: #fff !important;
   font-weight: 600 !important;
 }
-.ant-table-cell {
-  border-bottom: 1px solid lightgray !important;
+
+/* Row Hover */
+.ant-table-tbody > tr:hover > td {
+  background-color: rgb(214, 217, 246) !important;
+}
+
+/* Table Borders */
+.ant-table {
+  border: 1px solid lightgray !important;
+  border-radius: 5px !important;
+  overflow: hidden;
 }
